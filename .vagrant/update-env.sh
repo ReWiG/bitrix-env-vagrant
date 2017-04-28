@@ -8,6 +8,8 @@
 #yum remove -y php-pdo
 #yum install -y php-pdo
 
+#yum install -y php-pdo
+
 rm -f /etc/php.d/*xdebug.ini*
 
 echo 'zend_extension = xdebug.so
@@ -35,5 +37,4 @@ echo '
 sendfile off;
 ' >> /etc/nginx/bx/conf/bitrix_general.conf
 
-print "Update is completed." 1
 exit 0
