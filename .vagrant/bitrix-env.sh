@@ -394,7 +394,7 @@ config_root_pw(){
     # ask user
     print "MySQL root password is not set"
     read -r -p "Do you want to set a password for root user in MySQL service?(Y|n): " user_answer
-    [[ $( echo "$user_answer" | grep -wc "N" ) -gt 0 ]] && return 1
+    [[ $( echo "$user_answer" | grep -wci "\(No\|n\)" ) -gt 0 ]] && return 1
 
     MYSQL_ROOTPW=
     limit=5
