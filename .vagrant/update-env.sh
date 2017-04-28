@@ -34,3 +34,6 @@ EnableSendfile Off
 echo '
 sendfile off;
 ' >> /etc/nginx/bx/conf/bitrix_general.conf
+
+print "Update is completed." 1
+exit 0
