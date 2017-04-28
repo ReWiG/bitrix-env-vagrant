@@ -1,11 +1,23 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+# Check and install required Vagrant plugins
+required_plugins = ["vagrant-hostmanager", "vagrant-vbguest", "vagrant-cachier"]
+required_plugins.each do |plugin|
+    if !Vagrant.has_plugin?(plugin) then
+        system "echo Not installed required plugin: #{plugin} ..."
+            system "vagrant plugin install #{plugin}"
+    end
+end
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-Vagrant.configure(2) do |config|
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -51,6 +63,20 @@ Vagrant.configure(2) do |config|
   #   # Customize the amount of memory on the VM:
   #   vb.memory = "1024"
   # end
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Set entries in hosts file
+  # config.hostmanager.enabled = true
+  # config.hostmanager.manage_host = true
+  # config.hostmanager.ignore_private_ip = false
+  # config.hostmanager.include_offline = true
+  # config.hostmanager.aliases =  ["bitrix.dev", "www.bitrix.dev"]
+
+  if Vagrant.has_plugin?("vagrant-cachier")
+      config.cache.scope = :box
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
